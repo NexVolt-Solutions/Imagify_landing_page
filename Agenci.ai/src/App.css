@@ -1,0 +1,340 @@
+/* ========================================
+   Root & Base Styles
+   ======================================== */
+
+   #root {
+    max-width: 1280px;
+    margin: 0 auto; /* Center the root container */
+    padding: 0;
+    text-align: center;
+    /* Improve rendering performance */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* ========================================
+     Logo Styles
+     ======================================== */
+  
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms ease-in-out;
+  }
+  
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+  
+  /* Logo Animation */
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+  
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* ========================================
+     Card Component
+     ======================================== */
+  
+  .card {
+    padding: 2em;
+  }
+  
+  /* ========================================
+     Utility Classes
+     ======================================== */
+  
+  .read-the-docs {
+    color: #888;
+  }
+  
+  /* Screen Reader Only - Accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Skip to main content link - Accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
+  
+  /* ========================================
+     Hero Background Image
+     ======================================== */
+  
+  .hero-bg-image {
+    position: absolute;
+    top: -160px;
+    right: -160px;
+    max-width: none;
+    /* Performance optimization */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  @media (min-width: 640px) {
+    .hero-bg-image {
+      top: -100px;
+      right: -70px;
+    }
+  }
+  
+  /* ========================================
+     Performance Optimizations
+     ======================================== */
+  
+  /* Optimize scrolling performance */
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  /* Optimize image rendering */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Lazy loaded images - prevent layout shift */
+  img[loading="lazy"] {
+    min-height: 1px;
+  }
+  
+  /* ========================================
+     Focus Visible (Accessibility)
+     ======================================== */
+  
+  /* Remove default outline and add custom focus styles */
+  *:focus {
+    outline: none;
+  }
+  
+  *:focus-visible {
+    outline: 2px solid #BA8B02;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  /* ========================================
+     Print Styles (SEO & Accessibility)
+     ======================================== */
+  
+  @media print {
+    /* Hide non-essential elements when printing */
+    nav,
+    footer,
+    .no-print {
+      display: none !important;
+    }
+  
+    /* Optimize text for printing */
+    body {
+      color: #000;
+      background: #fff;
+    }
+  
+    /* Show link URLs in print */
+    a[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.8em;
+      color: #666;
+    }
+  
+    /* Avoid page breaks inside elements */
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid;
+      page-break-inside: avoid;
+    }
+  
+    img {
+      page-break-inside: avoid;
+    }
+  }
+  
+  /* ========================================
+     Dark Mode Optimization
+     ======================================== */
+  
+  @media (prefers-color-scheme: dark) {
+    /* Custom dark mode styles if needed beyond Tailwind */
+    :root {
+      color-scheme: dark;
+    }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root {
+      color-scheme: light;
+    }
+  }
+  
+  /* ========================================
+     High Contrast Mode (Accessibility)
+     ======================================== */
+  
+  @media (prefers-contrast: high) {
+    * {
+      border-color: currentColor !important;
+    }
+  
+    button,
+    a {
+      text-decoration: underline;
+    }
+  }
+  
+  /* ========================================
+     Font Loading Optimization
+     ======================================== */
+  
+  /* Prevent FOIT (Flash of Invisible Text) */
+  @font-face {
+    font-family: 'DM Sans';
+    font-display: swap; /* Shows fallback font immediately */
+    /* Add your font files here */
+  }
+  
+  /* ========================================
+     Loading State (Better UX)
+     ======================================== */
+  
+  /* Loading spinner or skeleton screens */
+  .loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  
+  .loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #BA8B02;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.6s linear infinite;
+  }
+  
+  @keyframes spinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* ========================================
+     Responsive Typography (Better Readability)
+     ======================================== */
+  
+  /* Fluid typography for better scaling */
+  html {
+    font-size: 16px;
+  }
+  
+  @media (min-width: 640px) {
+    html {
+      font-size: calc(16px + 0.25vw);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    html {
+      font-size: calc(16px + 0.5vw);
+    }
+  }
+  
+  /* ========================================
+     Selection Styling (Brand Consistency)
+     ======================================== */
+  
+  ::selection {
+    background-color: #BA8B02;
+    color: #000;
+  }
+  
+  ::-moz-selection {
+    background-color: #BA8B02;
+    color: #000;
+  }
+  
+  /* ========================================
+     Scrollbar Styling (Optional)
+     ======================================== */
+  
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #181818;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #BA8B02;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9a7302;
+  }
+  
+  /* ========================================
+     Reduced Motion Support
+     ======================================== */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-image {
+      animation: none !important;
+    }
+  }
