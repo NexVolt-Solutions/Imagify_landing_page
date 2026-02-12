@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-// import { HelmetProvider } from "react-helmet-async";
+import SEOHead from "./components/SEOHead";
 import Home from "./pages/Home";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import WaitlistSignup from "./components/WaitList";
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -16,14 +17,14 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Google Analytics pageview tracking (optional)
+// Google Analytics
 const GoogleAnalytics = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Replace 'GA_MEASUREMENT_ID' with your actual Google Analytics ID
+
     if (window.gtag) {
-      window.gtag('config', 'GA_MEASUREMENT_ID', {
+      window.gtag('config', 'G-XXXXXXXXXX', {
         page_path: location.pathname + location.search,
       });
     }
@@ -32,7 +33,7 @@ const GoogleAnalytics = () => {
   return null;
 };
 
-// 404 Not Found Page Component
+// Not Found Page
 const NotFound = () => {
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center px-6">
@@ -42,8 +43,8 @@ const NotFound = () => {
         <p className="text-gray-400 mb-8">
           Sorry, the page you're looking for doesn't exist.
         </p>
-        <a
-          href="/"
+        
+          <a href="/"
           className="inline-block px-8 py-3 rounded-full text-white font-semibold hover:scale-105 transition"
           style={{
             background: "linear-gradient(90deg, #BA8B02, #181818)",
@@ -57,19 +58,22 @@ const NotFound = () => {
 };
 
 const App = () => {
+  // Scroll to top on route change
   return (
-      <BrowserRouter>
-        <ScrollToTop />
-        <GoogleAnalytics />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-          
-          {/* 404 Route - Must be last */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <SEOHead />
+      {/* Scroll to top on route change */}
+      <ScrollToTop />
+      {/* Google Analytics */}
+      <GoogleAnalytics />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/waitlist-signup" element={<WaitlistSignup />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

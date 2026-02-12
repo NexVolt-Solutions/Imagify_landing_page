@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import assets from "../assets/assets";
 import { FaRegLightbulb } from "react-icons/fa6";
 
@@ -33,8 +33,8 @@ const HowItWorks = () => {
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.6 }}
       >
-        Built by a passionate team of designers, developers, and creators behind
-        Imagify AI.
+        Generate stunning AI images from simple text prompts using powerful,
+        fast, and creative AI technology.
       </motion.p>
 
       <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
@@ -48,14 +48,14 @@ const HowItWorks = () => {
         >
           <article className="mb-50">
             <h3 className="text-xl font-semibold text-white-400 mb-2">
-              Smart AI Prompts
+              Smart AI Prompt Assistance
             </h3>
             <div className="flex flex-row">
               <p className="text-gray-300 text-sm leading-relaxed">
-                Get instant AI suggestions to inspire unique and creative
-                wallpaper designs.
+                Get intelligent AI suggestions to craft better prompts and
+                generate high-quality images effortlessly.
               </p>
-              <div 
+              <div
                 className="w-12 h-12 rounded-full bg-gradient-to-br from-[#2a2a2a] via-[#1c1c1c] to-black flex items-center mr-3 justify-center shadow-lg relative"
                 aria-hidden="true"
               >
@@ -78,17 +78,17 @@ const HowItWorks = () => {
             </h3>
             <div className="flex flex-row">
               <p className="text-gray-300 text-sm leading-relaxed">
-                Simply type what you imagine and let AI transform it into a
-                beautiful wallpaper.
+                Type anything you imagine — from realistic photos to fantasy
+                art — and let AI bring it to life.
               </p>
-              <div 
+              <div
                 className="w-12 h-12 rounded-full bg-gradient-to-br from-[#2a2a2a] via-[#1c1c1c] to-black flex items-center justify-center shadow-lg relative"
                 aria-hidden="true"
               >
                 <div className="absolute inset-0 rounded-full bg-[#BA8B02]/20 blur-md"></div>
-                <FaRegLightbulb 
+                <FaRegLightbulb
                   className="relative z-10 h-8 w-8 ml-4 mt-1 pr-3"
-                  aria-label="Lightbulb icon representing ideas"
+                  aria-label="Idea generation icon"
                 />
               </div>
             </div>
@@ -103,7 +103,7 @@ const HowItWorks = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div 
+          <div
             className="absolute w-[625px] h-[625px] rounded-full p-[3.60px] border-t-[#BA8B02] bg-gradient-to-b from-[#BA8B0280] to-[#18181833] opacity-35"
             aria-hidden="true"
           >
@@ -130,7 +130,7 @@ const HowItWorks = () => {
         >
           <article className="mb-50">
             <div className="flex flex-row">
-              <div 
+              <div
                 className="w-12 h-12 rounded-full bg-gradient-to-br from-[#2a2a2a] via-[#1c1c1c] to-black flex items-center justify-center relative mr-3"
                 aria-hidden="true"
               >
@@ -145,19 +145,19 @@ const HowItWorks = () => {
                 />
               </div>
               <h3 className="text-xl font-semibold text-white-400 mb-2">
-                Choose Style & Size
+                Choose Style & Resolution
               </h3>
             </div>
 
             <p className="text-gray-300 text-sm leading-relaxed ml-12">
-              Select art styles, colors, and screen sizes that perfectly match
-              your device.
+              Pick from multiple art styles, moods, and image resolutions to
+              match your creative needs.
             </p>
           </article>
 
           <article>
             <div className="flex flex-row">
-              <div 
+              <div
                 className="w-12 h-12 rounded-full bg-gradient-to-br from-[#2a2a2a] via-[#1c1c1c] to-black flex items-center justify-center relative mr-4 ml-5"
                 aria-hidden="true"
               >
@@ -173,12 +173,13 @@ const HowItWorks = () => {
               </div>
 
               <h3 className="text-xl font-semibold text-white-400 mb-2">
-                Download & Use Instantly
+                Download, Share & Use
               </h3>
             </div>
 
             <p className="text-gray-300 text-sm leading-relaxed ml-9">
-              Save, share, or set your favorite wallpapers in just one tap.
+              Instantly download AI-generated images or share them anywhere with
+              a single tap.
             </p>
           </article>
         </motion.div>

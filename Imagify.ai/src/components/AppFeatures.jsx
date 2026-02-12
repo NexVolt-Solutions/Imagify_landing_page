@@ -1,36 +1,36 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const features = [
   {
-    title: "AI Wallpaper Generation",
-    desc: "Generate unique, high-quality wallpapers using simple text prompts.",
-    ariaLabel: "AI-powered wallpaper creation from text prompts"
+    title: "AI Image Generator",
+    desc: "Generate high-quality AI images from simple text prompts. Create wallpapers, artwork, illustrations, and creative visuals instantly.",
+    ariaLabel: "AI image generator using text prompts",
   },
   {
-    title: "AI Prompt Assistance",
-    desc: "Get smart AI-suggested and enhanced prompts for better results.",
-    ariaLabel: "Smart AI prompt suggestions for optimal wallpaper creation"
+    title: "Smart AI Prompt Assistance",
+    desc: "Get intelligent AI prompt suggestions to create more detailed, accurate, and visually stunning images every time.",
+    ariaLabel: "AI-assisted prompt suggestions for image generation",
   },
   {
-    title: "Styles & Themes",
-    desc: "Choose from nature, colorful, fantasy, 3D, anime, and abstract styles.",
-    ariaLabel: "Multiple wallpaper styles including nature, fantasy, 3D, and anime"
+    title: "Multiple Styles & Art Themes",
+    desc: "Choose from anime, realistic, fantasy, 3D, abstract, cinematic, and aesthetic AI image styles.",
+    ariaLabel: "Multiple AI image styles including anime and 3D art",
   },
   {
-    title: "Size & Aspect Ratio Control",
-    desc: "Create wallpapers in square, portrait, or landscape for mobile screens.",
-    ariaLabel: "Customizable aspect ratios for all mobile screen sizes"
+    title: "Custom Sizes & Aspect Ratios",
+    desc: "Generate images in portrait, landscape, or square formats — optimized for mobile, social media, and creative use.",
+    ariaLabel: "Custom image aspect ratios for different platforms",
   },
   {
-    title: "One-Tap Wallpaper Actions",
-    desc: "Preview, download, or set wallpapers instantly with one tap.",
-    ariaLabel: "Quick wallpaper preview, download, and set features"
+    title: "One-Tap Download & Share",
+    desc: "Preview, download, or share your AI-generated images instantly with a single tap.",
+    ariaLabel: "One tap AI image download and sharing feature",
   },
   {
-    title: "Premium & Ultimate Features",
-    desc: "Unlock unlimited generations, 4K quality, exclusive styles, and faster AI.",
-    ariaLabel: "Premium features with unlimited 4K wallpaper generation"
+    title: "Ultra-HD & 4K AI Images",
+    desc: "Unlock unlimited generations, ultra-HD and 4K quality images, exclusive styles, and faster AI processing.",
+    ariaLabel: "Ultra HD and 4K AI image generation features",
   },
 ];
 
@@ -42,10 +42,10 @@ const AppFeatures = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="bg-black px-4 sm:px-12 pt-4 lg:px-24 xl:px-40 py-24"
+      className="bg-black px-4 sm:px-12 lg:px-24 xl:px-40 pb-24"
       aria-labelledby="features-heading"
     >
-      {/* Heading */}
+      {/* Header */}
       <header className="text-center max-w-3xl mx-auto">
         <motion.h2
           id="features-heading"
@@ -55,7 +55,8 @@ const AppFeatures = () => {
           viewport={{ once: true }}
           className="text-4xl font-bold text-white"
         >
-          App <span className="text-yellow-400">Features</span>
+          Premium AI Wallpaper{" "}
+          <span className="text-yellow-400">Features</span>
         </motion.h2>
 
         <motion.p
@@ -65,11 +66,12 @@ const AppFeatures = () => {
           viewport={{ once: true }}
           className="mt-4 text-gray-400 text-lg"
         >
-          Design, generate, and set your perfect wallpaper effortlessly.
+          Create custom AI wallpapers with powerful tools, premium styles,
+          and high-quality results for your phone.
         </motion.p>
       </header>
 
-      {/* Feature Cards */}
+      {/* Feature Grid */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -77,7 +79,7 @@ const AppFeatures = () => {
         viewport={{ once: true }}
         className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
         role="list"
-        aria-label="Imagify AI app features"
+        aria-label="Imagify AI wallpaper app features"
       >
         {features.map((item, index) => (
           <motion.article
@@ -87,9 +89,18 @@ const AppFeatures = () => {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl p-6 shadow-[0_0_30px_rgba(255,215,0,0.08)]"
+            whileHover={{
+              y: -10,
+              scale: 1.04,
+            }}
+            whileTap={{ scale: 0.97 }}
+            className="rounded-2xl p-6 cursor-pointer
+            shadow-[0_0_30px_rgba(255,215,0,0.08)]
+            hover:shadow-[0_0_45px_rgba(255,215,0,0.18)]
+            transition-shadow duration-300"
             style={{
-              background: "linear-gradient(to top, rgba(186, 139, 2, 0.4), rgba(24, 24, 24, 0.6))"
+              background:
+                "linear-gradient(to top, rgba(186,139,2,0.35), rgba(24,24,24,0.75))",
             }}
             role="listitem"
             aria-label={item.ariaLabel}
@@ -97,6 +108,7 @@ const AppFeatures = () => {
             <h3 className="text-white text-lg font-semibold">
               {item.title}
             </h3>
+
             <p className="mt-3 text-gray-400 text-sm leading-relaxed">
               {item.desc}
             </p>

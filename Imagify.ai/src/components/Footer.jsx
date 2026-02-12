@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import assets from "../assets/assets";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { SiUpwork } from "react-icons/si";
 import { TbBrandFiverr } from "react-icons/tb";
@@ -9,7 +9,7 @@ import { TbBrandFiverr } from "react-icons/tb";
 const Footer = () => {
   return (
     <motion.footer
-      className="bg-[#080808] text-white px-6 mt-6 md:px-16 py-16"
+      className="bg-[#080808] text-white px-6 md:px-16 py-16 mt-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -37,8 +37,7 @@ const Footer = () => {
             </Link>
           </div>
           <p className="text-sm text-gray-300 leading-relaxed">
-            Simplifying wallpaper creation with AI — helping you design
-            stunning, personalized wallpapers with ease and confidence.
+            Simplifying wallpaper creation with AI — helping you design stunning, personalized wallpapers with ease and confidence.
           </p>
         </motion.div>
 
@@ -114,7 +113,7 @@ const Footer = () => {
               href="https://www.fiverr.com/rimsha_khan48"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Fiver"
+              aria-label="Fiverr"
               className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#121212] hover:bg-primary transition"
             >
               <TbBrandFiverr className="text-green-500 text-lg" />

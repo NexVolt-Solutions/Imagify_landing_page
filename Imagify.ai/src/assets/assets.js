@@ -8,13 +8,15 @@ import chooseColor from './choose_color.png'
 import downloadIcon from './download.png'
 import smartAI from './smart_ai.png'
 import ideasIcon from './ideas.png'
-import figmaLogo from './figma.png'
-import flutterLogo from './flutter.png'
-import fastApiLogo from './fast_api.png'
-import reactJsLogo from './react_js.png'
-import awsLogo from './aws.png'
+import figmaLogo from './figma.svg'
+import flutterLogo from './flutter.svg'
+import fastApiLogo from './fast_api.svg'
+import reactJsLogo from './react_js.svg'
+import awsLogo from './aws.svg'
 import arrowIcon from './arrow_icon.svg'
-
+// Store Icons (SVG – CRISP)
+import appleLogo from "./apple_logo.svg";
+import googlePlayLogo from "./google_play_logo.svg";
 /**
  * Assets object with SEO-friendly naming and metadata
  * This helps with image optimization and lazy loading
@@ -51,6 +53,18 @@ const assets = {
     width: 120,
     height: 40,
     loading: 'eager',
+  },
+
+   // Store Icons (SVG)
+   storeIcons: {
+    apple: {
+      src: appleLogo,
+      alt: "Apple App Store icon",
+    },
+    googlePlay: {
+      src: googlePlayLogo,
+      alt: "Google Play Store icon",
+    },
   },
   
   // Device Mockups

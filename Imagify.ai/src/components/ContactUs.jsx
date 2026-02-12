@@ -1,24 +1,32 @@
 import React from "react";
 import assets from "../assets/assets";
 import toast from "react-hot-toast";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const ContactUs = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
-
+  
     const formData = new FormData(event.target);
+  
+    formData.append(
+      "access_key",
+      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+    );
 
-    formData.append("access_key", "e60365a3-273c-405b-af99-e46aaadefd27");
-
+  
+    formData.append("subject", "New Contact Message – Imagify AI");
+    formData.append("from_name", "Imagify AI Website");
+    formData.append("replyto", event.target.email.value);
+  
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
       });
-
+  
       const data = await response.json();
-
+  
       if (data.success) {
         toast.success("Thank you for your submission!");
         event.target.reset();
@@ -29,6 +37,7 @@ const ContactUs = () => {
       toast.error(error.message);
     }
   };
+  
 
   return (
     <motion.section
@@ -69,7 +78,7 @@ const ContactUs = () => {
           <label htmlFor="contact-name" className="mb-2 text-sm font-medium block">
             Your name
           </label>
-          <div className="flex pl-3 rounded-lg border" style={{ borderColor: '#BA8B02' }}>
+          <div className="flex rounded-lg border" style={{ borderColor: '#BA8B02' }}>
             <input
               id="contact-name"
               name="name"
@@ -87,7 +96,7 @@ const ContactUs = () => {
           <label htmlFor="contact-email" className="mb-2 text-sm font-medium block">
             Email address
           </label>
-          <div className="flex pl-3 rounded-lg border" style={{ borderColor: '#BA8B02' }}>
+          <div className="flex rounded-lg border" style={{ borderColor: '#BA8B02' }}>
             <input
               id="contact-email"
               name="email"
@@ -138,14 +147,13 @@ const ContactUs = () => {
         </button>
       </motion.form>
 
-      {/* Schema.org ContactPage Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ContactPage",
           "name": "Contact Imagify AI",
           "description": "Get in touch with the Imagify AI team for questions, feedback, or support",
-          "url": "https://imagifyai.com/#contact-us",
+          "url": "https://imagifyai.io/#contact-us",
           "mainEntity": {
             "@type": "Organization",
             "name": "Imagify AI",

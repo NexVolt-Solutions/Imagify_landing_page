@@ -1,94 +1,148 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import assets from "../assets/assets";
 
 const HeroSection = () => {
   return (
     <section
       id="home"
-      className="h-[550px] flex flex-col md:flex-row items-center  lg:ml-20 justify-between pt-10 px-8 pb-10 bg-black text-white"
+      className="
+        min-h-screen
+        flex flex-col md:flex-row
+        items-center
+        justify-center md:justify-between
+        gap-12
+        px-6 sm:px-10 lg:px-20
+        pt-2 pb-16
+        ml-6 
+        bg-black text-white
+      "
       aria-labelledby="hero-heading"
     >
+      {/* LEFT CONTENT */}
       <motion.div
-        className="max-w-xl"
+        className="max-w-xl text-center md:text-left"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
+        {/* Badge */}
         <span
-          className="w-[201px] h-[31px] px-4 mb-5 py-1.5 rounded-full border border-[#99E39E] bg-[#99E39E1A] flex items-center justify-center gap-2 text-[#99E39E] text-sm font-semibold"
-          role="status"
-          aria-label="Featured: Future of AI Wallpapers"
+          className="
+            inline-flex items-center justify-center
+            px-4 py-1.5 mb-5 md:ml-4 md:mb-7
+            rounded-full
+            border border-[#99E39E]
+            bg-[#99E39E1A]
+            text-[#99E39E]
+            text-sm font-semibold
+          "
         >
-          Future of AI Wallpapers
+          Future of AI Image Creation
         </span>
 
+        {/* Heading */}
         <h1
           id="hero-heading"
-          className="text-[#FFFFFF] text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[120%] tracking-[-0.6%] font-medium"
+          className="
+            text-4xl sm:text-5xl md:text-6xl lg:text-[72px]
+            leading-18
+            font-medium
+          "
           style={{ fontFamily: "DM Sans" }}
         >
-          Create Stunning AI Wallpapers Instantly
+          Create Images with AI – Free AI Image Generator
         </h1>
 
+        {/* Description */}
         <p
-          className="text-gray-300 text-[16px] leading-[140%] tracking-[0%] mt-4"
+          className="
+            text-gray-300
+            text-base
+            leading-relaxed
+            mt-4 mb-10
+          "
           style={{ fontFamily: "DM Sans", fontWeight: 400 }}
         >
-          Turn your ideas into high-quality wallpapers using AI — fast,
-          creative, and effortless.
+          Generate stunning AI images from simple text prompts. Imagify AI helps you create wallpapers, artwork, and creative visuals easily and fast.
         </p>
 
-        <div
-          className="flex gap-[15px] mt-6 w-[277px] rounded-[12px]"
-          role="group"
-          aria-label="Download app"
-        >
-          {/* App Store */}
-          <a
-            href="https://apps.apple.com/app/imagify-ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[132.85px] h-[47.23px] px-[3px] py-[5px] gap-[10px]
-              rounded-[6.77px] bg-[#FFFFFF1A] flex items-center justify-center
-              hover:bg-[#FFFFFF33] transition-colors"
-            aria-label="Download Imagify AI on the App Store"
-          >
-            <img
-              src={assets.appStoreBadge.src}
-              alt={assets.appStoreBadge.alt}
-              className="h-full object-contain"
-              width="133"
-              height="47"
-              loading="eager"
-            />
-          </a>
-
-          {/* Google Play */}
+        {/* STORE BUTTONS */}
+        <div className="
+          flex flex-wrap justify-center mt-4 md:justify-start
+          gap-4 mt-8
+        ">
+          {/* GOOGLE PLAY */}
           <a
             href="https://play.google.com/store/apps/details?id=com.imagify"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[132.85px] h-[47.23px] px-[3px] py-[5px] gap-[10px]
-              rounded-[6.77px] bg-[#FFFFFF1A] flex items-center justify-center
-              hover:bg-[#FFFFFF33] transition-colors"
             aria-label="Get Imagify AI on Google Play"
+            className="
+              flex items-center gap-4
+              h-[52px] min-w-[180px]
+              px-4
+              rounded-md
+              bg-gradient-to-b from-[#2B2B2B] to-[#0F0F0F]
+              border border-white/10
+              hover:from-[#3A3A3A] hover:to-[#141414]
+              transition-all
+            "
           >
             <img
-              src={assets.googlePlayBadge.src}
-              alt={assets.googlePlayBadge.alt}
-              className="h-full object-contain"
-              width="133"
-              height="47"
-              loading="eager"
+              src={assets.storeIcons.googlePlay.src}
+              alt=""
+              aria-hidden="true"
+              className="w-7 h-7"
             />
+            <div className="leading-tight text-left">
+              <p className="text-[11px] uppercase tracking-wide text-gray-300">
+                Get it on
+              </p>
+              <p className="text-[18px] font-semibold text-white leading-none">
+                Google Play
+              </p>
+            </div>
+          </a>
+
+          {/* APP STORE */}
+          <a
+            href="https://apps.apple.com/app/imagify-ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download Imagify AI on the App Store"
+            className="
+              flex items-center gap-4
+              h-[52px] min-w-[172px]
+              px-4
+              rounded-md
+              bg-gradient-to-b from-[#2B2B2B] to-[#0F0F0F]
+              border border-white/10
+              hover:from-[#3A3A3A] hover:to-[#141414]
+              transition-all
+            "
+          >
+            <img
+              src={assets.storeIcons.apple.src}
+              alt=""
+              aria-hidden="true"
+              className="w-7 h-7"
+            />
+            <div className="leading-tight text-left">
+              <p className="text-[11px] text-gray-300">
+                Download on the
+              </p>
+              <p className="text-[18px] font-semibold text-white leading-none">
+                App Store
+              </p>
+            </div>
           </a>
         </div>
       </motion.div>
 
-      {/* Mobile Mockup */}
+      {/* RIGHT IMAGE */}
       <motion.div
-        className="mt-12 md:mt-0 md:ml-12"
+        className="flex justify-center w-full md:w-auto"
         initial={{ opacity: 0, x: 60 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
@@ -96,8 +150,13 @@ const HeroSection = () => {
         <img
           src={assets.mobileMockup.src}
           alt={assets.mobileMockup.alt}
-          className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[528px] h-auto rounded-xl shadow-lg"
-          width="528"
+          className="
+            w-full
+            max-w-[260px] sm:max-w-[360px] md:max-w-[520px]
+            h-auto
+            rounded-2xl
+            shadow-xl
+          "
           loading="eager"
           fetchpriority="high"
         />

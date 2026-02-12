@@ -1,6 +1,6 @@
 import React from "react";
-// import { Helmet } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
+import SEOHead from "../components/SEOHead";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import AppFeatures from "../components/AppFeatures";
@@ -11,103 +11,20 @@ import OurCreativeTeam from "../components/OurCreativeTeam";
 import WhyImagify_AI from "../components/WhyImagify_AI";
 import FAQSection from "../components/FAQSection";
 import ContactUs from "../components/ContactUs";
+import WaitlistSection from "../components/WaitList";
 import Footer from "../components/Footer";
 
 const Home = () => {
-  /* ===============================
-     Structured Data
-  ================================ */
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Imagify AI",
-    url: "https://imagifyai.com",
-    description:
-      "AI-powered wallpaper generation platform for creating unique, high-quality wallpapers",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://imagifyai.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
-  };
-
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Imagify AI",
-    url: "https://imagifyai.com",
-    logo: "https://imagifyai.com/logo.png",
-    description: "AI-powered wallpaper generation platform",
-    sameAs: [
-      "https://twitter.com/imagifyai",
-      "https://facebook.com/imagifyai",
-      "https://instagram.com/imagifyai",
-    ],
-  };
-
-  const softwareAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Imagify AI",
-    applicationCategory: "DesignApplication",
-    operatingSystem: "Web, iOS, Android",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      ratingCount: "5",
-    },
-    description:
-      "Create stunning AI-generated wallpapers instantly using simple text prompts",
-  };
+  
 
   return (
     <>
-      {/* <Helmet>
-        <title>
-          Imagify AI | AI Wallpaper Generator – Create Stunning Wallpapers
-        </title>
-        <meta
-          name="description"
-          content="Generate stunning AI wallpapers instantly with Imagify AI. Custom prompts, multiple styles, and high-resolution downloads."
-        />
-        <link rel="canonical" href="https://imagifyai.com" />
+      <SEOHead 
+        title="Imagify AI - AI Wallpaper Generator | Create Stunning Wallpapers Instantly"
+        description="Transform ideas into beautiful wallpapers with AI. Generate unique, high-quality wallpapers for mobile & desktop. Free download on iOS & Android."
+        canonical="https://imagifyai.io/"
+      />
 
-        {/* Open Graph 
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Imagify AI" />
-        <meta property="og:url" content="https://imagifyai.com" />
-        <meta
-          property="og:title"
-          content="Imagify AI – AI Wallpaper Generator"
-        />
-        <meta
-          property="og:description"
-          content="Create stunning AI wallpapers instantly."
-        />
-        <meta
-          property="og:image"
-          content="https://imagifyai.com/og-image.jpg"
-        />
-
-        {/* Twitter 
-        <meta name="twitter:card" content="summary_large_image" />
-
-        {/* Structured Data 
-        <script type="application/ld+json">
-          {JSON.stringify(websiteSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(softwareAppSchema)}
-        </script>
-      </Helmet> */}
 
       <main className="min-h-screen bg-black text-white relative pt-20 overflow-x-hidden">
         <Toaster
@@ -122,18 +39,29 @@ const Home = () => {
           }}
         />
 
+        {/* Navbar */}
         <Navbar />
-
+        {/* Hero Section */}
         <HeroSection />
+        {/* App Features */}
         <AppFeatures />
+        {/* Tools and Software */}
         <ToolsAndSoftware />
+        {/* Pro Package */}
         <ProPackage />
+        {/* How It Works */}
         <HowItWorks />
+        {/* Our Creative Team */}
         <OurCreativeTeam />
+        {/* Why Imagify AI */}
         <WhyImagify_AI />
+        {/* FAQ Section */}
         <FAQSection />
+        {/* Contact Us */}
         <ContactUs />
-
+        {/* Wait List */}
+        <WaitlistSection/>
+        {/* Footer */}
         <Footer />
       </main>
     </>

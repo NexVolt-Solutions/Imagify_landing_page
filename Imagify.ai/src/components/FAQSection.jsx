@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -48,8 +48,8 @@ const FAQSection = () => {
   };
 
   return (
-    <motion.section 
-      id="faqs" 
+    <motion.section
+      id="faqs"
       className="bg-black text-white pt-0 px-6 md:px-16 py-16"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -59,7 +59,7 @@ const FAQSection = () => {
     >
       <header className="text-center mb-12">
         <motion.h2
-          id="faqs"
+          id="faq-heading"
           className="text-3xl md:text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,18 +124,7 @@ const FAQSection = () => {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  transition={{ 
-                    duration: 0.3,
-                    ease: [0.4, 0, 0.2, 1],
-                    height: {
-                      duration: 0.3,
-                      ease: [0.4, 0, 0.2, 1]
-                    },
-                    opacity: {
-                      duration: 0.2,
-                      ease: "easeInOut"
-                    }
-                  }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                   id={`faq-answer-${index}`}
                   role="region"
                   aria-labelledby={`faq-question-${index}`}

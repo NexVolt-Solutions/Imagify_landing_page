@@ -1,85 +1,24 @@
 import React, { useEffect } from "react";
-// import { Helmet } from "react-helmet-async";
 import { motion } from "motion/react";
+import SEOHead from "../components/SEOHead";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const TermsAndConditions = () => {
-  // Force page to open from top
+
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://imagifyai.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Terms and Conditions",
-        "item": "https://imagifyai.com/terms-and-conditions"
-      }
-    ]
-  };
-
-  const webPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Terms and Conditions - Imagify AI",
-    "description": "Terms of Service and usage guidelines for Imagify AI platform",
-    "url": "https://imagifyai.com/terms-and-conditions",
-    "lastReviewed": "2025-01-08",
-    "mainEntity": {
-      "@type": "TermsOfService",
-      "datePublished": "2025-01-08",
-      "dateModified": "2025-01-08"
-    }
-  };
-
+  // Scroll to top on route change
   return (
     <>
-      {/* <Helmet>
-        {/* Primary Meta Tags
-        <title>Terms and Conditions | Imagify AI - Terms of Service</title>
-        <meta 
-          name="title" 
-          content="Terms and Conditions | Imagify AI - Terms of Service" 
-        />
-        <meta 
-          name="description" 
-          content="Read Imagify AI's Terms and Conditions to understand the rules and guidelines for using our AI wallpaper generation platform. Updated January 8, 2025." 
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://imagifyai.com/terms-and-conditions" />
-
-        {/* Open Graph / Facebook 
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://imagifyai.com/terms-and-conditions" />
-        <meta property="og:title" content="Terms and Conditions | Imagify AI" />
-        <meta property="og:description" content="Terms of Service for using Imagify AI platform." />
-        <meta property="og:site_name" content="Imagify AI" />
-
-        {/* Twitter 
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://imagifyai.com/terms-and-conditions" />
-        <meta name="twitter:title" content="Terms and Conditions | Imagify AI" />
-        <meta name="twitter:description" content="Terms of Service for using Imagify AI platform." />
-
-        {/* Structured Data 
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(webPageSchema)}
-        </script>
-      </Helmet> */}
+      <SEOHead 
+        title="Terms and Conditions | Imagify AI - Terms of Service"
+        description="Read Imagify AI's Terms and Conditions to understand the rules and guidelines for using our AI wallpaper generation platform."
+        canonical="https://imagifyai.io/terms-and-conditions"
+      />
 
       <div className="min-h-screen bg-black text-white">
         <Navbar />
@@ -353,10 +292,10 @@ const TermsAndConditions = () => {
                 <p>
                   If you have questions about these Terms and Conditions, please contact us at{" "}
                   <a 
-                    href="mailto:legal@imagifyai.com" 
+                    href="mailto:support@imagifyai.io" 
                     className="text-yellow-400 hover:underline"
                   >
-                    legal@imagifyai.com
+                    support@imagifyai.io
                   </a>
                   {" "}or through our{" "}
                   <a 

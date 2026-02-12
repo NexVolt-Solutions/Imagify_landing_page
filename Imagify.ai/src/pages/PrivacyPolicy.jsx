@@ -1,89 +1,28 @@
 import React, { useEffect } from "react";
-// import { Helmet } from "react-helmet-async";
+
 import { motion } from "motion/react";
+import SEOHead from "../components/SEOHead";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const PrivacyPolicy = () => {
-  // Force page to open from top
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://imagifyai.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Privacy Policy",
-        "item": "https://imagifyai.com/privacy-policy"
-      }
-    ]
-  };
-
-  const webPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Privacy Policy - Imagify AI",
-    "description": "Learn how Imagify AI collects, uses, and protects your personal information and data privacy",
-    "url": "https://imagifyai.com/privacy-policy",
-    "lastReviewed": "2025-01-08",
-    "mainEntity": {
-      "@type": "PrivacyPolicy",
-      "datePublished": "2025-01-08",
-      "dateModified": "2025-01-08"
-    }
-  };
-
+  // Scroll to top on route change
   return (
     <>
-      {/* <Helmet>
-        {/* Primary Meta Tags 
-        <title>Privacy Policy | Imagify AI - Data Protection & Privacy</title>
-        <meta 
-          name="title" 
-          content="Privacy Policy | Imagify AI - Data Protection & Privacy" 
-        />
-        <meta 
-          name="description" 
-          content="Read Imagify AI's Privacy Policy to understand how we collect, use, and protect your personal information. Updated January 8, 2025." 
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://imagifyai.com/privacy-policy" />
-
-        {/* Open Graph / Facebook 
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://imagifyai.com/privacy-policy" />
-        <meta property="og:title" content="Privacy Policy | Imagify AI" />
-        <meta property="og:description" content="Learn how Imagify AI protects your data and privacy." />
-        <meta property="og:site_name" content="Imagify AI" />
-
-        {/* Twitter 
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://imagifyai.com/privacy-policy" />
-        <meta name="twitter:title" content="Privacy Policy | Imagify AI" />
-        <meta name="twitter:description" content="Learn how Imagify AI protects your data and privacy." />
-
-        {/* Structured Data 
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(webPageSchema)}
-        </script>
-      </Helmet> */}
+      <SEOHead 
+        title="Privacy Policy | Imagify AI - Data Protection & Privacy"
+        description="Read Imagify AI's Privacy Policy to understand how we collect, use, and protect your personal information. Updated January 8, 2025."
+        canonical="https://imagifyai.io/privacy-policy"
+      />
 
       <div className="min-h-screen bg-black text-white">
         <Navbar />
-
+        {/* Main content */}
         <main>
           <motion.article
             initial={{ opacity: 0 }}
@@ -246,10 +185,10 @@ const PrivacyPolicy = () => {
                   If you have questions about this Privacy Policy or how we handle your 
                   data, please contact us at{" "}
                   <a 
-                    href="mailto:privacy@imagifyai.com" 
+                    href="mailto:support@imagifyai.io" 
                     className="text-yellow-400 hover:underline"
                   >
-                    privacy@imagifyai.com
+                    support@imagifyai.io
                   </a>
                   {" "}or through our{" "}
                   <a 
@@ -263,7 +202,7 @@ const PrivacyPolicy = () => {
             </motion.div>
           </motion.article>
         </main>
-
+        {/* Footer */}
         <Footer />
       </div>
     </>
