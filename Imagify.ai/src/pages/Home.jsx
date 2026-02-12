@@ -11,7 +11,6 @@ import OurCreativeTeam from "../components/OurCreativeTeam";
 import WhyImagify_AI from "../components/WhyImagify_AI";
 import FAQSection from "../components/FAQSection";
 import ContactUs from "../components/ContactUs";
-import WaitlistSection from "../components/WaitList";
 import Footer from "../components/Footer";
 
 const Home = () => {
@@ -59,8 +58,6 @@ const Home = () => {
         <FAQSection />
         {/* Contact Us */}
         <ContactUs />
-        {/* Wait List */}
-        <WaitlistSection/>
         {/* Footer */}
         <Footer />
       </main>

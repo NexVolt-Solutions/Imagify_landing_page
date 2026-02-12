@@ -6,27 +6,23 @@ import { motion } from "framer-motion";
 const ContactUs = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
-  
-    const formData = new FormData(event.target);
-  
-    formData.append(
-      "access_key",
-      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
-    );
 
-  
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+
     formData.append("subject", "New Contact Message – Imagify AI");
     formData.append("from_name", "Imagify AI Website");
     formData.append("replyto", event.target.email.value);
-  
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
       });
-  
+
       const data = await response.json();
-  
+
       if (data.success) {
         toast.success("Thank you for your submission!");
         event.target.reset();
@@ -37,7 +33,6 @@ const ContactUs = () => {
       toast.error(error.message);
     }
   };
-  
 
   return (
     <motion.section
@@ -56,8 +51,11 @@ const ContactUs = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Contact <span style={{ color: '#BA8B02' }}>Us</span>
+        <h2
+          id="contact-heading"
+          className="text-3xl md:text-4xl font-bold text-white mb-4"
+        >
+          Contact <span style={{ color: "#BA8B02" }}>Us</span>
         </h2>
         <p className="text-gray-400 text-base md:text-lg">
           Have questions or feedback? We're here to help you anytime.
@@ -75,10 +73,16 @@ const ContactUs = () => {
         noValidate
       >
         <div className="text-white">
-          <label htmlFor="contact-name" className="mb-2 text-sm font-medium block">
+          <label
+            htmlFor="contact-name"
+            className="mb-2 text-sm font-medium block"
+          >
             Your name
           </label>
-          <div className="flex rounded-lg border" style={{ borderColor: '#BA8B02' }}>
+          <div
+            className="flex rounded-lg border"
+            style={{ borderColor: "#BA8B02" }}
+          >
             <input
               id="contact-name"
               name="name"
@@ -93,10 +97,16 @@ const ContactUs = () => {
         </div>
 
         <div className="text-white">
-          <label htmlFor="contact-email" className="mb-2 text-sm font-medium block">
+          <label
+            htmlFor="contact-email"
+            className="mb-2 text-sm font-medium block"
+          >
             Email address
           </label>
-          <div className="flex rounded-lg border" style={{ borderColor: '#BA8B02' }}>
+          <div
+            className="flex rounded-lg border"
+            style={{ borderColor: "#BA8B02" }}
+          >
             <input
               id="contact-email"
               name="email"
@@ -111,7 +121,10 @@ const ContactUs = () => {
         </div>
 
         <div className="sm:col-span-2 text-white">
-          <label htmlFor="contact-message" className="mb-2 text-sm font-medium block">
+          <label
+            htmlFor="contact-message"
+            className="mb-2 text-sm font-medium block"
+          >
             Message
           </label>
           <textarea
@@ -120,50 +133,53 @@ const ContactUs = () => {
             rows={8}
             placeholder="Leave us a message..."
             className="w-full p-3 text-sm outline-none rounded-lg border bg-transparent"
-            style={{ borderColor: '#BA8B02' }}
+            style={{ borderColor: "#BA8B02" }}
             required
             aria-required="true"
           />
         </div>
 
-        <button
-          type="submit"
-          className="w-max flex items-center gap-2 text-white text-sm px-10 py-3 rounded-full cursor-pointer hover:scale-105 transition-all focus:outline-none "
-          style={{
-            background: "linear-gradient(90deg, #BA8B02, #181818)"
-          }}
-          aria-label="Submit contact form"
-        >
-          Submit 
-          <img 
-            src={assets.arrowIcon.src} 
-            className="w-4" 
-            alt="" 
-            aria-hidden="true"
-            width="16"
-            height="16"
-            loading="lazy"
-          />
-        </button>
+        <div className="sm:col-span-2 flex justify-end mt-2">
+          <button
+            type="submit"
+            className="w-max flex items-center gap-2 text-white text-sm px-10 py-3 rounded-full cursor-pointer hover:scale-105 transition-all focus:outline-none"
+            style={{
+              background: "linear-gradient(90deg, #BA8B02, #181818)",
+            }}
+            aria-label="Submit contact form"
+          >
+            Submit
+            <img
+              src={assets.arrowIcon.src}
+              className="w-4"
+              alt=""
+              aria-hidden="true"
+              width="16"
+              height="16"
+              loading="lazy"
+            />
+          </button>
+        </div>
       </motion.form>
 
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          "name": "Contact Imagify AI",
-          "description": "Get in touch with the Imagify AI team for questions, feedback, or support",
-          "url": "https://imagifyai.io/#contact-us",
-          "mainEntity": {
+          name: "Contact Imagify AI",
+          description:
+            "Get in touch with the Imagify AI team for questions, feedback, or support",
+          url: "https://imagifyai.io/#contact-us",
+          mainEntity: {
             "@type": "Organization",
-            "name": "Imagify AI",
-            "contactPoint": {
+            name: "Imagify AI",
+            contactPoint: {
               "@type": "ContactPoint",
-              "contactType": "Customer Support",
-              "availableLanguage": ["English"],
-              "areaServed": "Worldwide"
-            }
-          }
+              contactType: "Customer Support",
+              availableLanguage: ["English"],
+              areaServed: "Worldwide",
+            },
+          },
         })}
       </script>
     </motion.section>
