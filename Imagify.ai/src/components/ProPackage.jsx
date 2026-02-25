@@ -133,7 +133,7 @@ const ProPackage = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="bg-black px-4 sm:px-12 lg:px-24 xl:px-40 py-24"
+        className="bg-black px-4 sm:px-12 lg:px-24 xl:px-40 p-24"
         aria-labelledby="pricing-heading"
       >
         {/* Heading */}

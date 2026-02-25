@@ -1,5 +1,5 @@
-import React from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useRef, useEffect, useState, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { FaLinkedinIn } from "react-icons/fa";
 import faiz from "../assets/faiz.png";
@@ -62,7 +62,76 @@ const teamMembers = [
 
 const OurCreativeTeam = () => {
   const duplicatedMembers = [...teamMembers, ...teamMembers];
-  const controls = useAnimation();
+  const carouselRef = useRef(null);
+  const [paused, setPaused] = useState(false);
+  const [cardWidth, setCardWidth] = useState(350); // fallback value
+  const [carouselWidth, setCarouselWidth] = useState(0);
+  const [x, setX] = useState(0);
+
+  // Setup card width and total width
+  useEffect(() => {
+    if (carouselRef.current) {
+      const article = carouselRef.current.querySelector("article");
+      if (article) {
+        setCardWidth(article.offsetWidth + 32); // gap-8 = 32px
+      }
+      setCarouselWidth(
+        (carouselRef.current.children.length > 0
+          ? carouselRef.current.children.length
+          : 1) * (cardWidth)
+      );
+    }
+    const handleResize = () => {
+      if (carouselRef.current) {
+        const article = carouselRef.current.querySelector("article");
+        if (article) {
+          setCardWidth(article.offsetWidth + 32);
+        }
+        setCarouselWidth(
+          (carouselRef.current.children.length > 0
+            ? carouselRef.current.children.length
+            : 1) * (cardWidth)
+        );
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [cardWidth]);
+
+  // Animation Loop
+  useEffect(() => {
+    let animationFrame;
+    let lastTime = performance.now();
+    let speed = 60; // px per second
+
+    function animate(now) {
+      if (!paused) {
+        const dt = (now - lastTime) / 1000;
+        lastTime = now;
+
+        setX(prev => {
+          let nextX = prev - speed * dt;
+          // carouselWidth = duplicatedMembers.length * cardWidth
+          // reset position for seamless loop
+          if (Math.abs(nextX) >= (duplicatedMembers.length / 2) * cardWidth) {
+            nextX = 0;
+          }
+          return nextX;
+        });
+      } else {
+        lastTime = now; // Pause: update lastTime to prevent jumps
+      }
+      animationFrame = requestAnimationFrame(animate);
+    }
+
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
+    // eslint-disable-next-line
+  }, [paused, cardWidth, duplicatedMembers.length]);
+
+  // These functions for handling hover state
+  const handleHoverStart = useCallback(() => setPaused(true), []);
+  const handleHoverEnd = useCallback(() => setPaused(false), []);
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -136,94 +205,83 @@ const OurCreativeTeam = () => {
 
         <motion.div
           className="flex gap-8 w-max relative z-0"
-          animate={controls}
-          initial={{ x: "0%" }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 40,
-              ease: "linear",
-            },
-          }}
+          style={{ x }}
+          ref={carouselRef}
           role="list"
           aria-label="Imagify AI team members"
         >
           {duplicatedMembers.map((member, index) => (
-            <div key={index} className="flex-shrink-0">
-              <motion.article
-                onHoverStart={() => controls.stop()}
-                onHoverEnd={() =>
-                  controls.start({ x: ["0%", "-50%"] })
-                }
-                className="w-[300px] md:w-[350px] rounded-xl p-6 text-center shadow-lg relative group cursor-pointer"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(153, 117, 10, 0.4), rgba(24, 24, 24, 0.6))",
-                }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                role="listitem"
-                itemScope
-                itemType="https://schema.org/Person"
+            <motion.article
+              key={index}
+              className="w-[300px] md:w-[350px] rounded-xl p-6 text-center shadow-lg relative group cursor-pointer"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(153, 117, 10, 0.4), rgba(24, 24, 24, 0.6))",
+              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              onMouseEnter={handleHoverStart}
+              onMouseLeave={handleHoverEnd}
+              role="listitem"
+              itemScope
+              itemType="https://schema.org/Person"
+            >
+              <img
+                src={member.image}
+                alt={`${member.name} - ${member.role} at Imagify AI`}
+                className="w-24 h-24 mx-auto rounded-full mb-4 object-cover"
+                width="96"
+                height="96"
+                loading="lazy"
+                itemProp="image"
+              />
+
+              <h3
+                className="text-xl font-semibold text-white mb-1"
+                itemProp="name"
               >
-                <img
-                  src={member.image}
-                  alt={`${member.name} - ${member.role} at Imagify AI`}
-                  className="w-24 h-24 mx-auto rounded-full mb-4 object-cover"
-                  width="96"
-                  height="96"
-                  loading="lazy"
-                  itemProp="image"
+                {member.name}
+              </h3>
+
+              <p
+                className="text-sm text-gray-300 mb-2"
+                itemProp="jobTitle"
+              >
+                {member.role}
+              </p>
+
+              <p
+                className="text-sm text-gray-400"
+                itemProp="description"
+              >
+                {member.description}
+              </p>
+
+              <meta itemProp="worksFor" content="Imagify AI" />
+              {member.expertise && (
+                <meta
+                  itemProp="knowsAbout"
+                  content={member.expertise.join(", ")}
                 />
+              )}
 
-                <h3
-                  className="text-xl font-semibold text-white mb-1"
-                  itemProp="name"
-                >
-                  {member.name}
-                </h3>
-
-                <p
-                  className="text-sm text-gray-300 mb-2"
-                  itemProp="jobTitle"
-                >
-                  {member.role}
-                </p>
-
-                <p
-                  className="text-sm text-gray-400"
-                  itemProp="description"
-                >
-                  {member.description}
-                </p>
-
-                <meta itemProp="worksFor" content="Imagify AI" />
-                {member.expertise && (
-                  <meta
-                    itemProp="knowsAbout"
-                    content={member.expertise.join(", ")}
-                  />
-                )}
-
-                {/* LinkedIn Button */}
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View ${member.name} on LinkedIn`}
-                  role="button"
-                  className="absolute top-4 right-4 w-10 h-10 bg-yellow-400 rounded-full
-                  flex items-center justify-center text-black
-                  opacity-0 group-hover:opacity-100 transition-all duration-300
-                  hover:scale-110 active:scale-95 cursor-pointer"
-                >
-                  <FaLinkedinIn />
-                </a>
-              </motion.article>
-            </div>
+              {/* LinkedIn Button */}
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${member.name} on LinkedIn`}
+                role="button"
+                className="absolute top-4 right-4 w-10 h-10 bg-yellow-400 rounded-full
+                flex items-center justify-center text-black
+                opacity-0 group-hover:opacity-100 transition-all duration-300
+                hover:scale-110 active:scale-95 cursor-pointer"
+              >
+                <FaLinkedinIn />
+              </a>
+            </motion.article>
           ))}
         </motion.div>
       </div>

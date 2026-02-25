@@ -54,8 +54,13 @@ const ToolsAndSoftware = () => {
           </p>
         </header>
 
-        {/* Tools Row */}
-        <div className="flex justify-center items-start gap-10 flex-wrap md:flex-nowrap">
+        {/* Tools Grid - mobile: 2 col, above md: row */}
+        <div
+          className="
+            grid grid-cols-2 gap-x-6 gap-y-10 
+            md:flex md:justify-center md:items-start md:gap-10 md:flex-nowrap
+          "
+        >
           {tools.map((tool, index) => (
             <motion.div
               key={index}
@@ -68,12 +73,11 @@ const ToolsAndSoftware = () => {
                 scale: 1.05,
               }}
               whileTap={{ scale: 0.96 }}
-              className="flex flex-col items-center gap-4 w-40 cursor-pointer
-              transition-shadow duration-300"
+              className="flex flex-col items-center gap-4 w-full md:w-40 cursor-pointer transition-shadow duration-300"
             >
               <div
                 className="
-                  w-40 h-40 rounded-2xl
+                  w-full aspect-square max-w-[160px] md:w-40 md:h-40 rounded-2xl 
                   bg-gradient-to-b from-[#1a1a1a] to-[#0c0c0c]
                   border border-yellow-400/10
                   shadow-[0_0_30px_rgba(255,215,0,0.08)]
@@ -85,7 +89,7 @@ const ToolsAndSoftware = () => {
                 <img
                   src={tool.icon}
                   alt={`${tool.name} logo - ${tool.description}`}
-                  className="w-24 h-24 object-contain"
+                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
                   width="96"
                   height="96"
                   loading="lazy"

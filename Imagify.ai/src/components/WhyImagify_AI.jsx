@@ -79,6 +79,10 @@ const WhyImagify_AI = () => {
     }))
   };
 
+  // Carousel speed control
+  // Previous: 40, then 25, now make it a little bit more fast (e.g., 17)
+  const carouselSpeed = 17;
+
   return (
     <>
       {/* Structured Data for SEO */}
@@ -134,7 +138,7 @@ const WhyImagify_AI = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 40,
+                duration: carouselSpeed,
                 ease: "linear",
               },
             }}
@@ -180,7 +184,7 @@ const WhyImagify_AI = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 40,
+                duration: carouselSpeed,
                 ease: "linear",
               },
             }}
