@@ -59,10 +59,34 @@ const ProPackage = () => {
   };
 
   // Handle Business Plan
+  // When clicked, goes to "Contact Us" section on the current page, or navigates to home and scrolls
   const handleBusinessPlanClick = () => {
     trackPricingClick("business", "contact");
-    window.location.href =
-      "mailto:sales@imagifyai.io?subject=Business Plan Inquiry";
+
+    // Helper for scrolling to contact section
+    const scrollToContact = () => {
+      const section = document.getElementById("contact") || document.getElementById("contact-us");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+        return true;
+      }
+      return false;
+    };
+
+    if (window.location.pathname === "/") {
+      // Try to scroll now
+      if (!scrollToContact()) {
+        // Fallback: delay and try again (if rendering is async)
+        setTimeout(scrollToContact, 400);
+      }
+    } else {
+      // Navigate home, then scroll when possible
+      navigate("/", { state: { scrollToContact: true } });
+      // This expects App or Home to call scroll as a side effect; fallback below in case not handled
+      setTimeout(() => {
+        scrollToContact();
+      }, 700); // May need tuning based on routing speed
+    }
   };
 
   const plans = [
@@ -249,12 +273,12 @@ const ProPackage = () => {
           onClick={() => setShowModal(false)}
         >
           <motion.div
-            className="bg-[#1A1A1A] rounded-2xl p-8 max-w-md w-full border border-[#FFFFFF1A]"
+            className="flex flex-col bg-[#1A1A1A] rounded-2xl p-8 max-w-md w-full border border-[#FFFFFF1A]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-2xl font-bold mb-4 text-white">
+            <h3 className="text-2xl pl-18 font-bold mb-4 text-white">
               Download Imagify AI
             </h3>
             <p className="text-gray-400 mb-6">
@@ -263,20 +287,22 @@ const ProPackage = () => {
             <div className="flex gap-4">
               <a
                 href={appStoreURL}
-                className="flex-1 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold"
+                className="flex-1 text-white py-3 rounded-lg text-center font-semibold"
+                style={{ background: "linear-gradient(90deg, #BA8B02, #181818)" }}
               >
                 iOS App
               </a>
               <a
                 href={playStoreURL}
-                className="flex-1 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold"
+                className="flex-1 text-white py-3 rounded-lg text-center font-semibold"
+                style={{ background: "linear-gradient(90deg, #BA8B02, #181818)" }}
               >
                 Android App
               </a>
             </div>
             <button
               onClick={() => setShowModal(false)}
-              className="mt-6 w-full py-2 text-gray-400 hover:text-white"
+              className="mt-6 w-full py-2 border border-[#FFFFFF1A] rounded-2xl text-gray-400 hover:text-white"
             >
               Close
             </button>

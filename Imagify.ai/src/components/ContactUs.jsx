@@ -62,6 +62,23 @@ const ContactUs = () => {
         </p>
       </motion.header>
 
+      {/* Custom styles: single border with glowing effect on focus */}
+      <style>
+        {`
+          .contact-input,
+          .contact-textarea {
+            transition: border-color 0.2s, box-shadow 0.2s;
+          }
+          .contact-input:focus,
+          .contact-textarea:focus {
+            outline: none !important;
+            border-color: #BA8B02 !important;
+            box-shadow: 0 0 0 2px #BA8B02, 0 0 10px 2px rgba(186, 139, 2, 0.7) !important;
+            background-color: transparent;
+          }
+        `}
+      </style>
+
       <motion.form
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +105,7 @@ const ContactUs = () => {
               name="name"
               type="text"
               placeholder="Enter your name"
-              className="w-full p-3 text-sm outline-none bg-transparent"
+              className="contact-input w-full p-3 text-sm bg-transparent"
               required
               aria-required="true"
               autoComplete="name"
@@ -112,7 +129,7 @@ const ContactUs = () => {
               name="email"
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 text-sm outline-none bg-transparent"
+              className="contact-input w-full p-3 text-sm bg-transparent"
               required
               aria-required="true"
               autoComplete="email"
@@ -132,7 +149,7 @@ const ContactUs = () => {
             name="message"
             rows={8}
             placeholder="Leave us a message..."
-            className="w-full p-3 text-sm outline-none rounded-lg border bg-transparent"
+            className="contact-textarea w-full p-3 text-sm rounded-lg border bg-transparent"
             style={{ borderColor: "#BA8B02" }}
             required
             aria-required="true"
