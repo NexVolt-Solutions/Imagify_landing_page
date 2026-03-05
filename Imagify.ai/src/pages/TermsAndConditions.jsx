@@ -11,7 +11,19 @@ const TermsAndConditions = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Scroll to top on route change
+  // Fix: white overscroll area on light-mode mobile browsers.
+  // Mobile browsers show the <body> background in the rubber-band
+  // overscroll zone. Body defaults to white in light mode, causing
+  // a white flash above the Navbar. We patch it for this page only
+  // and restore the previous value on unmount.
+  useEffect(() => {
+    const prev = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = "#000000";
+    return () => {
+      document.body.style.backgroundColor = prev;
+    };
+  }, []);
+
   return (
     <>
       <SEOHead 

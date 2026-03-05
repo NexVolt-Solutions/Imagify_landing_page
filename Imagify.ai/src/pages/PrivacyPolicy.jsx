@@ -6,15 +6,28 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const PrivacyPolicy = () => {
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Scroll to top on route change
+  // ── Fix: white overscroll area on light-mode mobile browsers ───────────────
+  // Mobile browsers (iOS Safari, Android Chrome) show the <body> background
+  // color in the "rubber-band" overscroll zone above/below the page.
+  // Our content wrapper uses bg-black but <body> defaults to white in
+  // light-mode — causing a white flash at the top header area.
+  // We patch body's background for the lifetime of this page only.
+  useEffect(() => {
+    const prev = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = "#000000";
+    return () => {
+      // Restore whatever it was before (important if other pages are light)
+      document.body.style.backgroundColor = prev;
+    };
+  }, []);
+
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="Privacy Policy | Imagify AI - Data Protection & Privacy"
         description="Read Imagify AI's Privacy Policy to understand how we collect, use, and protect your personal information. Updated January 8, 2025."
         canonical="https://imagifyai.io/privacy-policy"
@@ -49,7 +62,7 @@ const PrivacyPolicy = () => {
 
             {/* Header */}
             <header className="mb-12">
-              <h1 
+              <h1
                 className="text-4xl md:text-5xl font-bold mb-4"
                 itemProp="headline"
               >
@@ -102,9 +115,7 @@ const PrivacyPolicy = () => {
                 <h2 id="usage" className="text-2xl font-semibold mb-4 text-white">
                   How We Use Your Information
                 </h2>
-                <p className="mb-3">
-                  Your data is used to:
-                </p>
+                <p className="mb-3">Your data is used to:</p>
                 <ul className="list-disc list-inside space-y-2 ml-4" role="list">
                   <li>Improve AI results and wallpaper generation quality</li>
                   <li>Manage your account and subscription preferences</li>
@@ -119,9 +130,9 @@ const PrivacyPolicy = () => {
                   Data Sharing and Third Parties
                 </h2>
                 <p>
-                  We do not sell your personal information. We may share data with trusted 
-                  service providers who help us operate our platform, process payments, 
-                  or provide analytics. These partners are bound by confidentiality agreements 
+                  We do not sell your personal information. We may share data with trusted
+                  service providers who help us operate our platform, process payments,
+                  or provide analytics. These partners are bound by confidentiality agreements
                   and may only use your data for specified purposes.
                 </p>
               </section>
@@ -131,9 +142,9 @@ const PrivacyPolicy = () => {
                   Data Security
                 </h2>
                 <p>
-                  We use industry-standard encryption and security practices to protect 
-                  your information, including SSL/TLS encryption for data transmission 
-                  and secure cloud storage. However, no method of transmission over the 
+                  We use industry-standard encryption and security practices to protect
+                  your information, including SSL/TLS encryption for data transmission
+                  and secure cloud storage. However, no method of transmission over the
                   internet is 100% secure, and we cannot guarantee absolute security.
                 </p>
               </section>
@@ -142,9 +153,7 @@ const PrivacyPolicy = () => {
                 <h2 id="rights" className="text-2xl font-semibold mb-4 text-white">
                   Your Privacy Rights
                 </h2>
-                <p className="mb-3">
-                  You have the right to:
-                </p>
+                <p className="mb-3">You have the right to:</p>
                 <ul className="list-disc list-inside space-y-2 ml-4" role="list">
                   <li>Access your personal data</li>
                   <li>Request correction of inaccurate information</li>
@@ -159,8 +168,8 @@ const PrivacyPolicy = () => {
                   Cookies and Tracking
                 </h2>
                 <p>
-                  We use cookies and similar technologies to enhance your experience, 
-                  analyze usage patterns, and remember your preferences. You can control 
+                  We use cookies and similar technologies to enhance your experience,
+                  analyze usage patterns, and remember your preferences. You can control
                   cookie settings through your browser preferences.
                 </p>
               </section>
@@ -170,9 +179,9 @@ const PrivacyPolicy = () => {
                   Policy Updates
                 </h2>
                 <p>
-                  We may update this Privacy Policy from time to time to reflect changes 
-                  in our practices or legal requirements. Material changes will be posted 
-                  on this page with an updated "Last Updated" date. We encourage you to 
+                  We may update this Privacy Policy from time to time to reflect changes
+                  in our practices or legal requirements. Material changes will be posted
+                  on this page with an updated "Last Updated" date. We encourage you to
                   review this policy periodically.
                 </p>
               </section>
@@ -182,27 +191,24 @@ const PrivacyPolicy = () => {
                   Contact Us
                 </h2>
                 <p>
-                  If you have questions about this Privacy Policy or how we handle your 
+                  If you have questions about this Privacy Policy or how we handle your
                   data, please contact us at{" "}
-                  <a 
-                    href="mailto:support@imagifyai.io" 
+                  <a
+                    href="mailto:support@imagifyai.io"
                     className="text-yellow-400 hover:underline"
                   >
                     support@imagifyai.io
-                  </a>
-                  {" "}or through our{" "}
-                  <a 
-                    href="/#contact-us" 
-                    className="text-yellow-400 hover:underline"
-                  >
+                  </a>{" "}
+                  or through our{" "}
+                  <a href="/#contact-us" className="text-yellow-400 hover:underline">
                     contact form
-                  </a>.
+                  </a>
+                  .
                 </p>
               </section>
             </motion.div>
           </motion.article>
         </main>
-        {/* Footer */}
         <Footer />
       </div>
     </>
